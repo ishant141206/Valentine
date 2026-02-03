@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ishant ❤️ Negin</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    font-family:Segoe UI, sans-serif;
+    overflow:hidden;
+}
+
+/* Background slideshow */
+.bg{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background-size:cover;
+    background-position:center;
+    animation: slide 28s infinite;
+    z-index:-2;
+}
+
+@keyframes slide{
+  0%{background-image:url('bg1.jpg');}
+  14%{background-image:url('bg2.jpg');}
+  28%{background-image:url('bg3.jpg');}
+  42%{background-image:url('bg4.jpg');}
+  56%{background-image:url('bg5.jpg');}
+  70%{background-image:url('bg6.jpg');}
+  85%{background-image:url('bg7.jpg');}
+  100%{background-image:url('bg1.jpg');}
+}
+
+.overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(255,180,200,0.35);
+    z-index:-1;
+}
+
+/* Floating hearts */
+.heart{
+    position:absolute;
+    bottom:-20px;
+    font-size:22px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float{
+    from{transform:translateY(0);opacity:1;}
+    to{transform:translateY(-110vh);opacity:0;}
+}
+
+.container{
+    background:white;
+    padding:35px;
+    border-radius:22px;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    text-align:center;
+    width:90%;
+    max-width:380px;
+    margin:auto;
+    margin-top:12vh;
+}
+
+.couple{
+    font-size:28px;
+    color:#ff2f70;
+    font-weight:bold;
+}
+
+.subtitle{
+    color:#ff6fa3;
+    margin-bottom:15px;
+}
+
+h1{
+    color:#ff4d88;
+}
+
+.buttons{
+    position:relative;
+    height:140px;
+}
+
+button{
+    padding:12px 28px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    position:absolute;
+}
+
+#yesBtn{
+    background:#ff4d88;
+    color:white;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+#noBtn{
+    background:#eee;
+    left:60%;
+    top:70px;
+}
+
+.result{
+    display:none;
+}
+
+.result img{
+    width:220px;
+    border-radius:15px;
+    margin-top:15px;
+}
+
+/* Music button */
+.music-btn{
+    position:fixed;
+    top:15px;
+    right:15px;
+    background:#ff4d88;
+    color:white;
+    padding:8px 15px;
+    border-radius:20px;
+    font-size:14px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="overlay"></div>
+
+<audio id="music" autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
+</audio>
+
+<div class="music-btn" onclick="toggleMusic()">🎵 Music</div>
+
+<div class="container">
+
+<div class="couple">Ishant ❤️ Negin</div>
+<div class="subtitle">Forever Together 💕</div>
+
+<h1>Will you be my Valentine forever, Ms. Negin Rasouli? 💖</h1>
+
+<div class="buttons">
+<button id="yesBtn">Yes 💖</button>
+<button id="noBtn">No 💔</button>
+</div>
+
+<div class="result" id="resultBox">
+<h2>Good choice ❤️</h2>
+<p>I love you forever, Negin 😘</p>
+<img src="https://i.imgflip.com/7qk8z0.jpg">
+</div>
+
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const resultBox = document.getElementById("resultBox");
+const buttons = document.querySelector(".buttons");
+const music = document.getElementById("music");
+
+// Move No button
+function moveNo(){
+    noBtn.style.left = Math.random()*240 + "px";
+    noBtn.style.top = Math.random()*100 + "px";
+}
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
+
+// Yes click
+yesBtn.onclick = ()=>{
+    buttons.style.display="none";
+    resultBox.style.display="block";
+}
+
+// Floating hearts
+function heart(){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(18+Math.random()*28)+"px";
+    h.style.animationDuration=(4+Math.random()*3)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),7000);
+}
+setInterval(heart,350);
+
+// Music toggle
+function toggleMusic(){
+    if(music.paused){
+        music.play();
+    }else{
+        music.pause();
+    }
+}
+</script>
+
+</body>
+</html>
